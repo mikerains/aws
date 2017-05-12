@@ -10,6 +10,7 @@ var MAX_WIDTH  = 100;
 var MAX_HEIGHT = 100;
 
 // get reference to S3 client 
+//var s3 = new AWS.S3({accessKeyId:'xxxxxxxxxx', secretAccessKey:'yyyyyyyyyyyyyyyyy'});
 var s3 = new AWS.S3();
  
 exports.handler = function(event, context, callback) {
@@ -46,15 +47,21 @@ exports.handler = function(event, context, callback) {
     async.waterfall([
         function download(next) {
             // Download the image from S3 into a buffer.
-            var params = {Bucket: 'bucket', Key: 'key', Body: 'body'};
-            var url = s3.getSignedUrl('putObject', params);
+            // AWS.config.credentials = new AWS.WebIdentityCredentials({
+            //     RoleArn: 'arn:aws:iam::<AWS_ACCOUNT_ID>/:role/<WEB_IDENTITY_ROLE_NAME>',
+            //     ProviderId: 'graph.facebook.com|www.amazon.com', // this is null for Google
+            //     WebIdentityToken: ACCESS_TOKEN
+            // });
 
-            var params = {Bucket: 'bucket', Key: 'key'};
-            s3.getSignedUrl('putObject', params, function (err, url) {
-            console.log('The URL is', url);
-            });
+            // var params = {Bucket: srcBucket, Key: srcKey};
+            // var url = s3.getSignedUrl('putObject', params);
 
+            // var params = {Bucket: 'bucket', Key: 'key'};
+            // s3.getSignedUrl('putObject', params, function (err, url) {
+            // console.log('The URL is', url);
+            // });
 
+            console.log('fetching key:' + srcKey + ' from bucket:' + srcBucket);
             s3.getObject({
                     Bucket: srcBucket,
                     Key: srcKey
@@ -62,7 +69,9 @@ exports.handler = function(event, context, callback) {
                 next);
             },
         function transform(response, next) {
+            console.log('resizing');
             gm(response.Body).size(function(err, size) {
+                console.log('resizing wxh = ' + size.width + ' x ' + size.height);
                 // Infer the scaling factor to avoid stretching the image unnaturally.
                 var scalingFactor = Math.min(
                     MAX_WIDTH / size.width,
@@ -84,6 +93,7 @@ exports.handler = function(event, context, callback) {
         }
 ,        function upload(contentType, data, next) {
             // Stream the transformed image to a different S3 bucket.
+            console.log('uploading key:' + srcKey + ' from bucket:' + srcBucket);
             s3.putObject({
                     Bucket: dstBucket,
                     Key: dstKey,

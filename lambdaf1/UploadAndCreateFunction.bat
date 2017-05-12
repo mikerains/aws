@@ -8,3 +8,4 @@ aws lambda create-function ^
 --profile adminuser ^
 --timeout 10 ^
 --memory-size 1024
+
