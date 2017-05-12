@@ -2,7 +2,7 @@
 
 [Using S3 with Lambda](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html)
 
-[DynamoDB Update Triggers (Streams + Lambda)] + Cross-Region Replication App] (https://aws.amazon.com/blogs/aws/dynamodb-update-triggers-streams-lambda-cross-region-replication-app/)
+[DynamoDB Update Triggers (Streams + Lambda) + Cross-Region Replication App] (https://aws.amazon.com/blogs/aws/dynamodb-update-triggers-streams-lambda-cross-region-replication-app/)
 
 [Capturing Table Activity with DynamoDB Streams] (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
 
