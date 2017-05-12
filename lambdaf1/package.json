@@ -1,0 +1,23 @@
+{
+  "name": "aws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikerains/aws.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikerains/aws/issues"
+  },
+  "homepage": "https://github.com/mikerains/aws#readme",
+  "devDependencies": {
+    "async": "^2.4.0",
+    "gm": "^1.23.0"
+  }
+}
