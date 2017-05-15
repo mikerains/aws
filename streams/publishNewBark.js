@@ -1,7 +1,7 @@
 'use strict';
 var AWS = require("aws-sdk");
-var sns = new AWS.SNS();
-sns.setRegion(Region.getRegion(Regions.US_EAST_2));
+var sns = new AWS.SNS({region: 'us-east-2'});
+
 exports.handler = (event, context, callback) => {
 
     event.Records.forEach((record) => {
