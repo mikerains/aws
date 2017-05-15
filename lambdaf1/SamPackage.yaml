@@ -12,8 +12,8 @@ Resources:
         MyUploadEvent:
           Type: S3
           Properties:
-            Bucket: !Ref SrcBucket
+            Bucket: !Ref mikephoto
             Events: s3:ObjectCreated:*
 
-  SrcBucket:
+  mikephoto:
     Type: AWS::S3::Bucket

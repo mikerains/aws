@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  TestFunction:
+    Properties:
+      CodeUri: s3://com.cascorpusa.samples.deploy.example1/c0dfc820d9ae534456837046feb919a9
+      Environment:
+        Variables:
+          S3_BUCKET: bucket-name
+      Handler: index.handler
+      Runtime: nodejs6.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
