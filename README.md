@@ -23,6 +23,8 @@
 
 [Create Your Own Serverless Application](http://docs.aws.amazon.com/lambda/latest/dg/serverless-deploy-wt.html)
 
+[Cloud Formations Docs](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
+
 
 # Beanstalk
 [My First Elastic Beanstalk Application](https://us-west-2.console.aws.amazon.com/elasticbeanstalk/home?region=us-west-2#/application/versions?applicationName=My%20First%20Elastic%20Beanstalk%20Application)
