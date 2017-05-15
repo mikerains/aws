@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  CreateThumbnail:
+    Properties:
+      CodeUri: s3://com.cascorpusa.sample.deploy.sam/3d6f420aa0077ec3673cc496953c9fd8
+      Events:
+        MyUploadEvent:
+          Properties:
+            Bucket:
+              Ref: SrcBucket
+            Events: s3:ObjectCreated:*
+          Type: S3
+      Handler: CreateThumbnail.handler
+      Policies: AWSLambdaExecute
+      Runtime: nodejs6.10
+      Timeout: 60
+    Type: AWS::Serverless::Function
+  SrcBucket:
+    Type: AWS::S3::Bucket
+Transform: AWS::Serverless-2016-10-31

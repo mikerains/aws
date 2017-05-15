@@ -1,0 +1,1 @@
+aws s3 mb s3://com.cascorpusa.sample.deploy.sam --region us-east-2
