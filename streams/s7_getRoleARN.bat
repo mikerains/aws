@@ -1,0 +1,1 @@
+aws iam get-role --role-name WooferLambdaRole

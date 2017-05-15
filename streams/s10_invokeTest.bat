@@ -1,0 +1,1 @@
+aws lambda invoke  --function-name publishNewBark --payload file://s9_testpayload.json output.txt
