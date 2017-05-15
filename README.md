@@ -14,6 +14,8 @@
 [Use Cases - Examples of how to use Lambdas]
 (http://docs.aws.amazon.com/lambda/latest/dg/use-cases.html)
 
+[Mobile Back-end Android App and Lambda Function](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-custom-android-example.html)
+
 [Using S3 with Lambda](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html)
 
 [Step 4 of Tutorial Gets Into Servless Deployment Packages](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example-use-app-spec.html)
