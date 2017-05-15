@@ -12,11 +12,13 @@
 
 # AWS Lambda Samples
 [Using S3 with Lambda](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example.html)
+
 [Step 4 of Tutorial Gets Into Servless Deployment Packages](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example-use-app-spec.html)
 
 [Simple Microservice using Lambda and API Gateway](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example-configure-event-source_1.html)
 
 [Simplified Serverless App Delpoyment and Management - Introduction article Oct 2016](https://aws.amazon.com/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/)
+
 [Github resources for Oct 2016 Article](https://github.com/awslabs/serverless-application-model/blob/master/examples/2016-10-31/s3_processor/template.yaml)
 
 [Create Your Own Serverless Application](http://docs.aws.amazon.com/lambda/latest/dg/serverless-deploy-wt.html)
