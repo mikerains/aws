@@ -15,6 +15,8 @@
 
 [Step 4 of Tutorial Gets Into Servless Deployment Packages](http://docs.aws.amazon.com/lambda/latest/dg/with-s3-example-use-app-spec.html)
 
+[Deploying Lambda Based Applications](http://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html)
+
 [Simple Microservice using Lambda and API Gateway](http://docs.aws.amazon.com/lambda/latest/dg/with-on-demand-https-example-configure-event-source_1.html)
 
 [Simplified Serverless App Delpoyment and Management - Introduction article Oct 2016](https://aws.amazon.com/blogs/compute/introducing-simplified-serverless-application-deplyoment-and-management/)
