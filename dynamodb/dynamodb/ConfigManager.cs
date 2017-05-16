@@ -8,7 +8,7 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
 using Newtonsoft.Json;
 
-namespace dynamodb
+namespace ConfigService
 {
     public class ConfigManager
     {
@@ -27,6 +27,29 @@ namespace dynamodb
         public const string SORT_KEY = "ConfigurationKey";
 
         private Dictionary<string, object> fakeCache = new Dictionary<string, object>();
+
+        public object Get(string ProjectName, string ConfigurationKey)
+        {
+            object obj = GetFromCache(ProjectName, ConfigurationKey);
+            if (null != obj)
+            {
+                return obj;
+            }
+            else
+            {
+                LoadCache(ProjectName);
+            }
+
+            obj = GetFromCache(ProjectName, ConfigurationKey);
+            if (null != obj)
+            {
+                return obj;
+            }
+            else
+            {
+                throw new Exception($"{ProjectName}:{ConfigurationKey} Does Not Exist");
+            }
+        }
 
 
         public T Get<T>(string ProjectName, string ConfigurationKey)
@@ -106,11 +129,19 @@ namespace dynamodb
                 docList = search.GetNextSet();
                 foreach (var doc in docList)
                 {
-                    Type type = Type.GetType(doc["ConfigurationType"]);
-                    var obj = JsonConvert.DeserializeObject(doc["Value"], type);
-                    fakeCache.Add($"{ProjectName}:" + doc["ConfigurationKey"], obj);
+                    Type type = GetTypeEx(doc["ConfigurationType"].AsString());
+                    var obj = JsonConvert.DeserializeObject(doc["Value"].AsString(), type);
+                    fakeCache.Add($"{ProjectName}:" + doc["ConfigurationKey"].AsString(), obj);
                 }
             } while (!search.IsDone);
+        }
+
+        private Type GetTypeEx(string fullTypeName)
+        {
+            return Type.GetType(fullTypeName) ??
+                   AppDomain.CurrentDomain.GetAssemblies()
+                            .Select(a => a.GetType(fullTypeName))
+                            .FirstOrDefault(t => t != null);
         }
 
 

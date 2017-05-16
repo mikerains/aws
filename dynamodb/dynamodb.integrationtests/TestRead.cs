@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
-using dynamodb;
+using ConfigService;
 
 namespace dynamodb.integrationtests
 {
@@ -26,8 +26,12 @@ namespace dynamodb.integrationtests
         public void TestMethod()
         {
             // Arrange
-
-            Assert.Pass("Your first passing test");
+            ConfigManager cm = new ConfigManager();
+            var raw = cm.Get("Project1", "Key1");
+            Assert.IsNotNull(raw);
+            Rank rank = raw as Rank;
+            Assert.IsNotNull(rank, raw.GetType().Name + "is not of Type Rank");
+            Assert.AreEqual(rank.Title, "Captain");
         }
 
         [Test]
@@ -36,6 +40,7 @@ namespace dynamodb.integrationtests
             // Arrange
 
             TableManager tm = new TableManager();
+            tm.CreateConfigTable();
         }
     }
 }

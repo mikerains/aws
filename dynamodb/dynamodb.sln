@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dynamodb", "dynamodb\dynamodb.csproj", "{ABF148B6-E623-4A75-A735-06B29D5CB84B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigService", "dynamodb\ConfigService.csproj", "{ABF148B6-E623-4A75-A735-06B29D5CB84B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dynamodb.unittests", "dynamodb.unittests\dynamodb.unittests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject

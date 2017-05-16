@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Amazon;
 using Amazon.DynamoDBv2;
 
-namespace dynamodb
+namespace ConfigService
 {
     public class DbService
     {

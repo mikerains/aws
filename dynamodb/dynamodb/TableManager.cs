@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 
-namespace dynamodb
+namespace ConfigService
 {
     /// <summary>
     /// This would not be deployed to production. 
