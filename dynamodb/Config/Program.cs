@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.Model;
 using Amazon.Runtime;
+using ConfigService;
+using dynamodb.integrationtests;
 
-namespace com.amazonaws.codesamples
+namespace ConfigExample
 {
     class LowLevelTableExample
     {
@@ -16,13 +18,16 @@ namespace com.amazonaws.codesamples
             try
             {
                 //CreateExampleTable();
-                ListMyTables();
+                //ListMyTables();
                 //GetTableInformation();
                 //UpdateExampleTable();
 
-                DeleteExampleTable();
+                //DeleteExampleTable();
 
-                ListMyTables();
+                ConfigManager cm = new ConfigManager();
+                var rank = cm.Get<Rank>("Project1", "Key1");
+                Console.WriteLine($"Rank.Title={rank.Title}");
+
 
                 Console.WriteLine("To continue, press Enter");
                 Console.ReadLine();

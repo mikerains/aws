@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dynamodb.unittests", "dynam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dynamodb.integrationtests", "dynamodb.integrationtests\dynamodb.integrationtests.csproj", "{ABB72E91-9111-4613-B449-96BB41307DFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Config", "Config\Config.csproj", "{A4DB3A6A-7959-4517-844B-4D00AE09436C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigExample", "Config\ConfigExample.csproj", "{A4DB3A6A-7959-4517-844B-4D00AE09436C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

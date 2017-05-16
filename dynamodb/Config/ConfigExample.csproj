@@ -8,7 +8,7 @@
     <ProjectGuid>{A4DB3A6A-7959-4517-844B-4D00AE09436C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Config</RootNamespace>
+    <RootNamespace>ConfigExample</RootNamespace>
     <AssemblyName>Config</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -149,5 +149,15 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.4.12\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dynamodb.integrationtests\dynamodb.integrationtests.csproj">
+      <Project>{abb72e91-9111-4613-b449-96bb41307dfa}</Project>
+      <Name>dynamodb.integrationtests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dynamodb\ConfigService.csproj">
+      <Project>{abf148b6-e623-4a75-a735-06b29d5cb84b}</Project>
+      <Name>ConfigService</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
