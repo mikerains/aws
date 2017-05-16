@@ -1,5 +1,6 @@
 'use strict';
 var AWS = require("aws-sdk");
+// https://forums.aws.amazon.com/thread.jspa?threadID=132533 SNS.Client defaults to us-east-1
 var sns = new AWS.SNS({region: 'us-east-2'});
 
 exports.handler = (event, context, callback) => {
