@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
+using dynamodb;
 
 namespace dynamodb.integrationtests
 {
@@ -27,6 +28,14 @@ namespace dynamodb.integrationtests
             // Arrange
 
             Assert.Pass("Your first passing test");
+        }
+
+        [Test]
+        public void CreateTable()
+        {
+            // Arrange
+
+            TableManager tm = new TableManager();
         }
     }
 }

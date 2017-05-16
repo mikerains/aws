@@ -58,10 +58,40 @@ namespace dynamodb
             if (this.fakeCache.Keys.Contains($"{projectname}:{key}"))
             {
                 return this.fakeCache[$"{projectname}:{key}"];
-            } else
+            }
+            else
             {
                 return null;
             }
+        }
+
+        private void LoadCacheFromQuery(string ProjectName)
+        {
+            QueryResponse response = null;
+            do
+            {
+                var request = new QueryRequest
+                {
+                    TableName = TABLENAME,
+                    KeyConditionExpression = "#pn = :v_ProjectName",
+                    ExpressionAttributeNames = new Dictionary<string, string>
+                {
+                    { "#pn", "ProjectName" }
+                },
+                    ExpressionAttributeValues = new Dictionary<string, AttributeValue> {
+                    {":v_ProjectName", new AttributeValue { S =  ProjectName }}},
+                    ConsistentRead = true,
+                    ExclusiveStartKey = response!=null&&response.LastEvaluatedKey.Count>0?response.LastEvaluatedKey:null
+                };
+                response = adbclient.Query(request);
+
+                foreach (var doc in response.Items)
+                {
+                    Type type = Type.GetType(doc["ConfigurationType"].S);
+                    var obj = JsonConvert.DeserializeObject(doc["Value"].S, type);
+                    fakeCache.Add($"{ProjectName}:" + doc["ConfigurationKey"].S, obj);
+                }
+            } while (response.LastEvaluatedKey!=null&&response.LastEvaluatedKey.Count>0);
         }
 
         private void LoadCache(string ProjectName)
