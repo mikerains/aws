@@ -10,7 +10,7 @@ namespace ConfigExample
 {
     class LowLevelTableExample
     {
-        private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
+                private static AmazonDynamoDBClient client = new AmazonDynamoDBClient();
         private static string tableName = "ExampleTable";
 
         static void Main(string[] args)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 using Newtonsoft.Json;
 
 namespace ConfigService
@@ -15,7 +16,22 @@ namespace ConfigService
         /// <summary>
         /// Use ambient credentials and config
         /// </summary>
-        private AmazonDynamoDBClient adbclient = new AmazonDynamoDBClient();
+        private AmazonDynamoDBClient _adbclient = null;
+
+        public AmazonDynamoDBClient adbclient
+        {
+            get
+            {
+                if (null== _adbclient)
+                {
+                    var c = new BasicAWSCredentials("AKIAIIBSDFX3DQPWQNOA", "5kvy+8olVHQTF0k3/mdxJn0Lw9kPZ7TyLK8Ym0e3");
+                    var adbc = new AmazonDynamoDBConfig();
+                    adbc.RegionEndpoint = Amazon.RegionEndpoint.USEast2;
+                    _adbclient = new AmazonDynamoDBClient(c, adbc);
+                }
+                return _adbclient;
+            }
+        }
 
         /// <summary>
         /// Config table
