@@ -1,6 +1,10 @@
 # SNS
 
 DOCS: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
+* has topics for sending messages to SQS, SMS, HTTPS and Mobile Push, but doesn't have examples of .Net Code
+* There is a sample Java under "Getting Started" seciton
+* to see sample .Net SDK code, refer to the "Developer Guide: SNS with AWS SDK for .NET" link below.
+
 
 Documentation: https://aws.amazon.com/documentation/sns/
 
