@@ -26,6 +26,10 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 
 
 
+## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
+https://aws.amazon.com/search?searchPath=code&searchQuery=SNS&x=0&y=0&this_doc_product=Amazon+Simple+Notification+Service&this_doc_guide=API+Reference&doc_locale=en_us
+* [Sample Subscription Confirm and Verify Signature using Amaon's public key](https://aws.amazon.com/code/9387800257078150)
+
 
 
 
