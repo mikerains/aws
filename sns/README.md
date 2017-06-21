@@ -5,6 +5,10 @@ DOCS: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
 * There is a sample Java under "Getting Started" seciton
 * to see sample .Net SDK code, refer to the "Developer Guide: SNS with AWS SDK for .NET" link below.
 
+[AWS SDK for .NET Version 3 API Reference](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
+
+Be sure to visit the link to [Programming with the AWS SDK for .NET](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
+
 
 Documentation: https://aws.amazon.com/documentation/sns/
 
@@ -25,6 +29,10 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 * This SDK page has a link to [Getting Started with the AWS SDK for .NET](https://aws.amazon.com/developers/getting-started/net/)
 
 
+
+## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
+* https://aws.amazon.com/search?searchPath=code&searchQuery=SNS&x=0&y=0&this_doc_product=Amazon+Simple+Notification+Service&this_doc_guide=API+Reference&doc_locale=en_us
+* [Sample Subscription Confirm and Verify Signature using Amaon's public key](https://aws.amazon.com/code/9387800257078150)
 
 
 
