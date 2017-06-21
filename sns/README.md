@@ -7,7 +7,13 @@ DOCS: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
 
 [AWS SDK for .NET Version 3 API Reference](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
 
+# AWS SDK for .NET
+
 Be sure to visit the link to [Programming with the AWS SDK for .NET](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
+
+http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-setup.html
+
+
 
 
 Documentation: https://aws.amazon.com/documentation/sns/
@@ -15,6 +21,8 @@ Documentation: https://aws.amazon.com/documentation/sns/
 API: http://docs.aws.amazon.com/sns/latest/api/Welcome.html
 
 API for Subscribe: http://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html
+
+
 
 
 [Dev Guide: SNS with AWS SDK for .NET sample code for both Low-level and Resource API](http://docs.aws.amazon.com/sdk-for-net/v2/developer-guide/sns-apis-intro.html)
@@ -33,7 +41,6 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 ## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
 * https://aws.amazon.com/search?searchPath=code&searchQuery=SNS&x=0&y=0&this_doc_product=Amazon+Simple+Notification+Service&this_doc_guide=API+Reference&doc_locale=en_us
 * [Sample Subscription Confirm and Verify Signature using Amaon's public key](https://aws.amazon.com/code/9387800257078150)
-
 
 
 
