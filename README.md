@@ -1,3 +1,6 @@
+# General .Net SDK
+[Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
+
 # DynamoDB Streams
 
 [DynamoDB Update Triggers (Streams + Lambda) + Cross-Region Replication App](https://aws.amazon.com/blogs/aws/dynamodb-update-triggers-streams-lambda-cross-region-replication-app/)
