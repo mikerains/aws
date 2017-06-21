@@ -5,6 +5,10 @@ DOCS: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
 * There is a sample Java under "Getting Started" seciton
 * to see sample .Net SDK code, refer to the "Developer Guide: SNS with AWS SDK for .NET" link below.
 
+[AWS SDK for .NET Version 3 API Reference](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
+
+Be sure to visit the link to [Programming with the AWS SDK for .NET](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
+
 
 Documentation: https://aws.amazon.com/documentation/sns/
 
