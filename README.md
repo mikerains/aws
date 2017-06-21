@@ -1,3 +1,25 @@
+# General .Net SDK - LOGGING
+[Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
+
+https://aws.amazon.com/blogs/developer/amazon-cloudwatch-logs-and-net-logging-frameworks/
+
+* https://github.com/aws/aws-logging-dotnet
+
+Following the NLog example, I had a failure with the Configured example based on NLog.config.  By catching exceptions in the ApiController and returning as
+````
+  return BadRequest(ex.ToString());
+````
+I was able to determine the configuration wasn't finding the target "AWSTarget"
+
+I then switch to use the programmatic configuration.  With the same "BardRequest" I was able to determine that "AWS.Logger.Core" wasn't found during app start=up, I had to include that NuGet.  See: https://github.com/aws/aws-logging-dotnet/blob/master/samples/NLog/ProgrammaticConfigurationExample/Program.cs
+
+I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log Group and Stream. The EC2 already has a CloudWatch Logs Agent, but I am trying to write via the Cloudwatch Logs SDK, so the policy described on this link explains the permissions needed for the EC2 Role.  I applied this to both roles aws-elasticbeanstalk-ec2-role and aws-beanstalk-service-role. See: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
+
+## API Gateway
+To get ApiGateway confogured to log full requests to CloudWatch, I had to add Policies and Trust Relationship.  See https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/   See also: https://forums.aws.amazon.com/thread.jspa?threadID=219199
+
+
+
 # DynamoDB Streams
 
 [DynamoDB Update Triggers (Streams + Lambda) + Cross-Region Replication App](https://aws.amazon.com/blogs/aws/dynamodb-update-triggers-streams-lambda-cross-region-replication-app/)
