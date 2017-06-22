@@ -67,7 +67,7 @@ I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log
 
 
 ### The Logs in CloudWatch Look Like This
-![CloudWatch Nav](./images.Logging_CreatedLogs.png)
+![CloudWatch Nav](./images/Logging_CreatedLogs.png)
 
 ![Programmatic Entries](./images/Logging_Logger.InfoEntries.png)
 
