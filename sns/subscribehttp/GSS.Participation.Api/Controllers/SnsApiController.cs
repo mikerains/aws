@@ -116,7 +116,7 @@ namespace GSS.Participation.Api.Controllers
         //        return BadRequest(msg);
         //    }
         }
-        public async Task<IHttpActionResult> PostConfirmation(Amazon.SimpleNotificationService.Util.Message response)
+        public async Task<IHttpActionResult> PostConfirmation(ConfirmationMessage response)
         {
             //TODO - verify auth - http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.verify.signature.html
             //TODO - verify this confirmation is expected topicarn recorded in PostSubscription
@@ -170,5 +170,16 @@ namespace GSS.Participation.Api.Controllers
 
             LogManager.Configuration = config;
         }
+    }
+
+    public class ConfirmationMessage
+    {
+        public string Type { get; set; }
+        public Guid MessageId { get; set; }
+        public string Token { get; set; }
+        public string TopicArn { get; set; }
+        public string Message { get; set; }
+        public string SubscribeURL { get; set; }
+
     }
 }
