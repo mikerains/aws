@@ -151,6 +151,17 @@ namespace GSS.Participation.Api.Controllers
             }
         }
 
+        public class ConfirmationMessage
+        {
+            public string Type { get; set; }
+            public Guid MessageId { get; set; }
+            public string Token { get; set; }
+            public string TopicArn { get; set; }
+            public string Message { get; set; }
+            public string SubscribeURL { get; set; }
+
+        }
+
         static void ConfigureNLog()
         {
             var config = new LoggingConfiguration();
@@ -172,14 +183,5 @@ namespace GSS.Participation.Api.Controllers
         }
     }
 
-    public class ConfirmationMessage
-    {
-        public string Type { get; set; }
-        public Guid MessageId { get; set; }
-        public string Token { get; set; }
-        public string TopicArn { get; set; }
-        public string Message { get; set; }
-        public string SubscribeURL { get; set; }
 
-    }
 }
