@@ -79,17 +79,7 @@ I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log
 
 ![Api Gateway Entries](./images/ApiGateway_Entries.png)
 
-
-# Publishing Web Api to Beanstalk
-* Optionally create a Beanstalk App using the wizard.  But when I get to the choice of Creating a Sample APp or Uploading an App, I'm not sure what to do.  If I stop here, the App is created, but it has no environment.  
-* The way I did it was to use the Visual Studio Context-Menu as in these screenshots:
-
-![Visual Studio](./images/Publishing_Step1.png)
-
-![Visual Studio](./images/Publishing_Step2.png)
-
-
-## API Gateway
+## API Gateway Logging Configuration
 To get ApiGateway confogured to log full requests to CloudWatch, I had to add Policies and Trust Relationship.  See https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/   See also: https://forums.aws.amazon.com/thread.jspa?threadID=219199
 
 ![Settings Role](./images/APIGateway_LoggingConfigAccount.png)
@@ -103,6 +93,13 @@ To get ApiGateway confogured to log full requests to CloudWatch, I had to add Po
 ![ApiGateway Turn On Logging](./images/ApiGateway_LoggingConfigInStage.png)
 
 
+# Publishing Web Api to Beanstalk
+* Optionally create a Beanstalk App using the wizard.  But when I get to the choice of Creating a Sample APp or Uploading an App, I'm not sure what to do.  If I stop here, the App is created, but it has no environment.  
+* The way I did it was to use the Visual Studio Context-Menu as in these screenshots:
+
+![Visual Studio](./images/Publishing_Step1.png)
+
+![Visual Studio](./images/Publishing_Step2.png)
 
 
 # DynamoDB Streams
