@@ -7,6 +7,8 @@ The goal is to be able to write logs somewhere.  I found how to get the logging 
 ## NuGet Packages
 ![NuGet Packages](./images/Logging_NuGetPackages.png)
 
+The CloadWatch Logs are created in 
+
 ![NuGet Packages 2](./images/Logging_NuGetPackages2.png)
 
 
@@ -63,6 +65,15 @@ I then switch to use the programmatic configuration.  With the same "BadRequest"
 
 I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log Group and Stream. The EC2 already has a CloudWatch Logs Agent, but I am trying to write via the Cloudwatch Logs SDK, so the policy described on this link explains the permissions needed for the EC2 Role.  I applied this to both roles aws-elasticbeanstalk-ec2-role and aws-beanstalk-service-role. See: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 
+
+### The Logs in CloudWatch Look Like This
+![CloudWatch Nav](./images.Logging_CreatedLogs.png)
+
+![Programmatic Entries](./images/Logging_Logger.InfoEntries.png)
+
+![Api Gateway Entries](./images/ApiGateway_Entries.png)
+
+
 # Publishing Web Api to Beanstalk
 * Optionally create a Beanstalk App using the wizard.  But when I get to the choice of Creating a Sample APp or Uploading an App, I'm not sure what to do.  If I stop here, the App is created, but it has no environment.  
 * The way I did it was to use the Visual Studio Context-Menu as in these screenshots:
@@ -74,6 +85,17 @@ I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log
 
 ## API Gateway
 To get ApiGateway confogured to log full requests to CloudWatch, I had to add Policies and Trust Relationship.  See https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/   See also: https://forums.aws.amazon.com/thread.jspa?threadID=219199
+
+![Settings Role](./images/APIGateway_LoggingConfigAccount.png)
+
+![Policy](./images/Logging_PolicyGrants.png)
+
+![TrustRelationship 1](./images/Logging_TrustRelationship1.png)
+
+![TrustRelationship 2](./images/Logging_TrustRelationship2.png)
+
+![ApiGateway Turn On Logging](./images/ApiGateway_LoggingConfigInStage.png)
+
 
 
 
