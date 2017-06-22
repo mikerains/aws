@@ -55,15 +55,15 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 
 ![Subscription](../images/SNS_SubscribeRequestCode.png)
 
-![Confirmation](../images/SNS_SubscribeRequestCode.png)
+![Confirmation](../images/SNS_PostConfirmationCode.png)
 
 ![Confirmed Subscription](../images/SNS_ConfirmedSubscription.png)
 
 ![Beanstalk](../images/SNS_BeanstalkApp.png)
 
-~[EC2](../images/SNS_EC2_Instance.png)
+![EC2](../images/SNS_EC2_Instance.png)
 
-![ApiGateway](../images/SNS_ApiGateway.png)
+![ApiGateway](../images/SNS_ApiGatewway.png)
 
 ![ApiGateway Headers](../images/SNS_ApiGateway_TransformHeaders.png)
 
