@@ -12,7 +12,7 @@ This page has links to Sample which are found in the "Working with DynamoDB" sec
 
 [CRUD Examples](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html)
 
-Also see the Query example "FindRepliesPostedWithinTimePerios" within http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetQuerying.html
+Also see the Query example "FindRepliesPostedWithinTimePeriod" within http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetQuerying.html
 
 
 ## Dynamo DB
