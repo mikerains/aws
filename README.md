@@ -15,6 +15,14 @@ I then switch to use the programmatic configuration.  With the same "BardRequest
 
 I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log Group and Stream. The EC2 already has a CloudWatch Logs Agent, but I am trying to write via the Cloudwatch Logs SDK, so the policy described on this link explains the permissions needed for the EC2 Role.  I applied this to both roles aws-elasticbeanstalk-ec2-role and aws-beanstalk-service-role. See: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 
+# Publishing Web Api to Beanstalk
+First create a Beanstalk App.  Then use Visual Studio to deploy to it.
+
+![Visual Studio](./images/Publishing_Step1.png)
+
+![Visual Studio](./images/Publishing_Step2.png)
+
+
 ## API Gateway
 To get ApiGateway confogured to log full requests to CloudWatch, I had to add Policies and Trust Relationship.  See https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-cloudwatch-logs/   See also: https://forums.aws.amazon.com/thread.jspa?threadID=219199
 
