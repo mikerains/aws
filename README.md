@@ -48,6 +48,12 @@ The CloadWatch Logs are created in
     }
 ````
 
+```` Programmatic Log Entry
+NLog.LogManager.GetLogger("aws").Info($"PostConfirmation called");
+string confirmResponse = JsonConvert.SerializeObject(response);
+NLog.LogManager.GetLogger("aws").Info($"PostConfirmation payload = " + confirmResponse);
+````
+
 
 [Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
 
