@@ -4,7 +4,9 @@
 
 [VStudio Tools and SDK](https://aws.amazon.com/visualstudio/)
 
-### I used the samples in the following.  The Query code shows looking up all the keys for a partition, which was the pasis for the Configuration example code I wrote that reads all the keys for a project.
+### I used the samples found in the following lnks.  
+
+The Query example code shows looking up all the keys for a partition, which was the basis for the Configuration example code I wrote that reads all the keys for a project.
 
 [.Net Code Samples](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CodeSamples.DotNet.html)
 
