@@ -59,6 +59,14 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 
 ![Confirmed Subscription](../images/SNS_ConfirmedSubscription.png)
 
+![Beanstalk](../images/SNS_BeanstalkApp.png)
+
+~[EC2](../images/SNS_EC2_Instance.png)
+
+![ApiGateway](../images/SNS_ApiGateway.png)
+
+![ApiGateway Headers](../images/SNS_ApiGateway_TransformHeaders.png)
+
 
 ## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
 * https://aws.amazon.com/search?searchPath=code&searchQuery=SNS&x=0&y=0&this_doc_product=Amazon+Simple+Notification+Service&this_doc_guide=API+Reference&doc_locale=en_us
