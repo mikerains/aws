@@ -2,7 +2,7 @@
 The goal is to be able to write logs somewhere.  I found how to get the logging to go to AWS CloudWatch.  In the Participation example, 
 * NLog.LogManager.GetLogger("aws").Info("message") writes to a CloudWatch Log LogStream.
 ** I reached succed on this by following https://github.com/aws/aws-logging-dotnet/blob/master/samples/NLog/ProgrammaticConfigurationExample/Program.cs
-* ApiGateway requests are also logged to a CloludWatch LogStream, and can have the complete Request with headers and Body
+* ApiGateway requests are also logged to a CloudWatch LogStream, and can have the complete Request with headers and Body
 
 ## NuGet Packages
 ![NuGet Packages](./images/Logging_NuGetPackages.png)
@@ -48,14 +48,20 @@ The CloadWatch Logs are created in
     }
 ````
 
+```` Programmatic Log Entry
+NLog.LogManager.GetLogger("aws").Info($"PostConfirmation called");
+string confirmResponse = JsonConvert.SerializeObject(response);
+NLog.LogManager.GetLogger("aws").Info($"PostConfirmation payload = " + confirmResponse);
+````
 
+## Background Notes on getting the Logging to work
 [Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
 
 https://aws.amazon.com/blogs/developer/amazon-cloudwatch-logs-and-net-logging-frameworks/
 
 * https://github.com/aws/aws-logging-dotnet
 
-Following the NLog example, I had a failure with the Configured example based on NLog.config.  By catching exceptions in the ApiController and returning as
+While trying to follow the NLog example, I had a failure with the Configured example based on NLog.config.  By catching exceptions in the ApiController and returning as
 ````
   return BadRequest(ex.ToString());
 ````
@@ -67,7 +73,7 @@ I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log
 
 
 ### The Logs in CloudWatch Look Like This
-![CloudWatch Nav](./images.Logging_CreatedLogs.png)
+![CloudWatch Nav](./images/Logging_CreatedLogs.png)
 
 ![Programmatic Entries](./images/Logging_Logger.InfoEntries.png)
 

@@ -4,6 +4,7 @@ DOCS: http://docs.aws.amazon.com/sns/latest/dg/welcome.html
 * has topics for sending messages to SQS, SMS, HTTPS and Mobile Push, but doesn't have examples of .Net Code
 * There is a sample Java under "Getting Started" seciton
 * to see sample .Net SDK code, refer to the "Developer Guide: SNS with AWS SDK for .NET" link below.
+* Also used sample code here: http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/sns-apis-intro.html
 
 [AWS SDK for .NET Version 3 API Reference](http://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-programming-techniques.html)
 
@@ -36,6 +37,12 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 * This page has a SEARCH dropdown that can search Example Code.  Try searching this for "SNS"
 * This SDK page has a link to [Getting Started with the AWS SDK for .NET](https://aws.amazon.com/developers/getting-started/net/)
 
+
+![Subscription](../images/SNS_SubscribeRequestCode.png)
+
+![Confirmation](../images/SNS_SubscribeRequestCode.png)
+
+![Confirmed Subscription](../images/SNS_ConfirmedSubscription.png)
 
 
 ## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
