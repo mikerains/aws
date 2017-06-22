@@ -1,4 +1,54 @@
 # General .Net SDK - LOGGING
+The goal is to be able to write logs somewhere.  I found how to get the logging to go to AWS CloudWatch.  In the Participation example, 
+* NLog.LogManager.GetLogger("aws").Info("message") writes to a CloudWatch Log LogStream.
+** I reached succed on this by following https://github.com/aws/aws-logging-dotnet/blob/master/samples/NLog/ProgrammaticConfigurationExample/Program.cs
+* ApiGateway requests are also logged to a CloludWatch LogStream, and can have the complete Request with headers and Body
+
+## NuGet Packages
+![NuGet Packages](./images/Logging_NuGetPackages.png)
+
+![NuGet Packages 2](./images/C:\github\mikerains\aws\images\Logging_NuGetPackages2.png)
+
+
+## Code Excerpts
+````Configuring NLog
+        static void ConfigureNLog()
+        {
+            var config = new LoggingConfiguration();
+
+            var consoleTarget = new ColoredConsoleTarget();
+            config.AddTarget("console", consoleTarget);
+
+            var awsTarget = new NLog.AWS.Logger.AWSTarget()
+            {
+                LogGroup = "NLog.ProgrammaticConfigurationExample",
+                Region = "us-east-2"
+            };
+            config.AddTarget("aws", awsTarget);
+
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
+            config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, awsTarget));
+
+            LogManager.Configuration = config;
+        }
+````
+
+```` Confirmation POST Body Payload
+    public class ConfirmationMessage
+    {
+        public string Type { get; set; }
+        public Guid MessageId { get; set; }
+        public string Token { get; set; }
+        public string TopicArn { get; set; }
+        public string Message { get; set; }
+        public string SubscribeURL { get; set; }
+
+    }
+````
+
+
+
+
 [Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
 
 https://aws.amazon.com/blogs/developer/amazon-cloudwatch-logs-and-net-logging-frameworks/
@@ -16,7 +66,8 @@ I then switch to use the programmatic configuration.  With the same "BardRequest
 I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log Group and Stream. The EC2 already has a CloudWatch Logs Agent, but I am trying to write via the Cloudwatch Logs SDK, so the policy described on this link explains the permissions needed for the EC2 Role.  I applied this to both roles aws-elasticbeanstalk-ec2-role and aws-beanstalk-service-role. See: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 
 # Publishing Web Api to Beanstalk
-First create a Beanstalk App.  Then use Visual Studio to deploy to it.
+* Optionally create a Beanstalk App using the wizard.  But when I get to the choice of Creating a Sample APp or Uploading an App, I'm not sure what to do.  If I stop here, the App is created, but it has no environment.  
+* The way I did it was to use the Visual Studio Context-Menu as in these screenshots:
 
 ![Visual Studio](./images/Publishing_Step1.png)
 
