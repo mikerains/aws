@@ -7,7 +7,7 @@ The goal is to be able to write logs somewhere.  I found how to get the logging 
 ## NuGet Packages
 ![NuGet Packages](./images/Logging_NuGetPackages.png)
 
-![NuGet Packages 2](./images/C:\github\mikerains\aws\images\Logging_NuGetPackages2.png)
+![NuGet Packages 2](./images/Logging_NuGetPackages2.png)
 
 
 ## Code Excerpts
@@ -47,8 +47,6 @@ The goal is to be able to write logs somewhere.  I found how to get the logging 
 ````
 
 
-
-
 [Logging](https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/)
 
 https://aws.amazon.com/blogs/developer/amazon-cloudwatch-logs-and-net-logging-frameworks/
@@ -61,7 +59,7 @@ Following the NLog example, I had a failure with the Configured example based on
 ````
 I was able to determine the configuration wasn't finding the target "AWSTarget"
 
-I then switch to use the programmatic configuration.  With the same "BardRequest" I was able to determine that "AWS.Logger.Core" wasn't found during app start=up, I had to include that NuGet.  See: https://github.com/aws/aws-logging-dotnet/blob/master/samples/NLog/ProgrammaticConfigurationExample/Program.cs
+I then switch to use the programmatic configuration.  With the same "BadRequest" I was able to determine that "AWS.Logger.Core" wasn't found during app start=up, I had to include that NuGet.  See: https://github.com/aws/aws-logging-dotnet/blob/master/samples/NLog/ProgrammaticConfigurationExample/Program.cs
 
 I also found that I needed permissions on the EC2 Role to Create Cloud Watch Log Group and Stream. The EC2 already has a CloudWatch Logs Agent, but I am trying to write via the Cloudwatch Logs SDK, so the policy described on this link explains the permissions needed for the EC2 Role.  I applied this to both roles aws-elasticbeanstalk-ec2-role and aws-beanstalk-service-role. See: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/QuickStartEC2Instance.html
 
