@@ -37,12 +37,35 @@ A point of confusion is that the documentaiton for the API and for the Resource 
 * This page has a SEARCH dropdown that can search Example Code.  Try searching this for "SNS"
 * This SDK page has a link to [Getting Started with the AWS SDK for .NET](https://aws.amazon.com/developers/getting-started/net/)
 
+## Code Excerpts
+````
+  <appSettings>
+    <add key="AWSProfileName" value="adminuser" />
+    <add key="AWSRegion" value="us-east-2" />
+    
+    <add key="SnsEndpoint" value="https://w03x57ncg2.execute-api.us-east-2.amazonaws.com/Dev/" />
+    <add key="SnsEventsTopicArn" value="arn:aws:sns:us-east-2:349960403903:ParticipationEvent" />
+    
+    <!-- https://aws.amazon.com/blogs/developer/logging-with-the-aws-sdk-for-net/-->
+    <add key="AWSLogging" value="SystemDiagnostics" />
+    
+  </appSettings>
+````
+
 
 ![Subscription](../images/SNS_SubscribeRequestCode.png)
 
 ![Confirmation](../images/SNS_SubscribeRequestCode.png)
 
 ![Confirmed Subscription](../images/SNS_ConfirmedSubscription.png)
+
+![Beanstalk](../images/SNS_BeanstalkApp.png)
+
+~[EC2](../images/SNS_EC2_Instance.png)
+
+![ApiGateway](../images/SNS_ApiGateway.png)
+
+![ApiGateway Headers](../images/SNS_ApiGateway_TransformHeaders.png)
 
 
 ## SNS Samples - from the Developer's Guide, setting dropdown to "Sample Code & Libraries" and searching for "SNS"
