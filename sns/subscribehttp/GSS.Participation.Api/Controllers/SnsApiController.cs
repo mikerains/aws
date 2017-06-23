@@ -16,6 +16,8 @@ using NLog;
 using NLog.Targets;
 using AWS.Logger.Core;
 using System.Web.Http.Cors;
+using System.Text;
+using System.Web;
 
 namespace GSS.Participation.Api.Controllers
 {
@@ -39,7 +41,7 @@ namespace GSS.Participation.Api.Controllers
 
             try
             {
-                NLog.LogManager.GetCurrentClassLogger().Info($"Test NLog message for GetTest with name {name}");
+                NLog.LogManager.GetLogger("aws").Info($"Test NLog message for GetTest with name {name}");
             } catch (Exception ex)
             {
                 return BadRequest("GOT EXCEPTION DURING GetCurrentClassLogger, ToString=" + ex.ToString());
@@ -76,6 +78,8 @@ namespace GSS.Participation.Api.Controllers
         {
             try
             {
+                ConfigureNLog();
+                NLog.LogManager.GetLogger("aws").Info("GetSubscription Entered");
                 var endpoint = ConfigurationManager.AppSettings["SnsEndpoint"];
                 var topicarn = ConfigurationManager.AppSettings["SnsEventsTopicArn"];
                 var client = new Amazon.SimpleNotificationService.AmazonSimpleNotificationServiceClient();
@@ -86,11 +90,19 @@ namespace GSS.Participation.Api.Controllers
                     TopicArn = topicarn
                 };
                 var response = client.Subscribe(request);
+                NLog.LogManager.GetLogger("aws").Info("GetSubscription returned response SubscriptionArn=" + response.SubscriptionArn);
                 return Ok(response.SubscriptionArn); //TODO - stuff this in database, on PostConfirmation verify response topic is pending  
             }
             catch (Exception ex)
             {
                 string msg = ex.ToString();
+                try
+                {
+                    NLog.LogManager.GetLogger("aws").Info("GetSubscription got error " + ex.ToString());
+                } catch(Exception ex2)
+                {
+
+                }
                 return BadRequest("AN ERROR HAPEPNED: " + msg);
             }
         }
@@ -116,7 +128,32 @@ namespace GSS.Participation.Api.Controllers
         //        return BadRequest(msg);
         //    }
         }
-        public async Task<IHttpActionResult> PostConfirmation(ConfirmationMessage response)
+        
+        public async Task<IHttpActionResult> Post()
+        {
+            try
+            {
+                ConfigureNLog();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("ERROR DURING NLOG CONFIG " + ex.ToString());
+            }
+            try {
+                NLog.LogManager.GetLogger("aws").Info($"Generic Post Method called");
+                string result = await Request.Content.ReadAsStringAsync();
+                NLog.LogManager.GetLogger("aws").Info($"Generic Post Method Body=" + result);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.ToString();
+                NLog.LogManager.GetLogger("aws").Info($"PostConfirmation exception " + msg);
+                return BadRequest("AN ERROR HAPEPNED: " + msg);
+            }
+
+        }
+        private async Task<IHttpActionResult> PostConfirmation(ConfirmationMessage response)
         {
             //TODO - verify auth - http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.verify.signature.html
             //TODO - verify this confirmation is expected topicarn recorded in PostSubscription
@@ -128,12 +165,16 @@ namespace GSS.Participation.Api.Controllers
             {
                 return BadRequest("ERROR DURING NLOG CONFIG " + ex.ToString());
             }
-
             try
             {
+                
+
                 NLog.LogManager.GetLogger("aws").Info($"PostConfirmation called");
                 string confirmResponse = JsonConvert.SerializeObject(response);
                 NLog.LogManager.GetLogger("aws").Info($"PostConfirmation payload = " + confirmResponse);
+                string serialized = SerializeRequest(Request, response);
+
+                NLog.LogManager.GetLogger("aws").Info("SERIALIZED REQUEST " + serialized);
 
                 HttpClient httpclient = new HttpClient();
                 NLog.LogManager.GetLogger("aws").Info($"PostConfirmation invoking httpClient.GetAsync");
@@ -151,15 +192,36 @@ namespace GSS.Participation.Api.Controllers
             }
         }
 
-        public class ConfirmationMessage
-        {
-            public string Type { get; set; }
-            public Guid MessageId { get; set; }
-            public string Token { get; set; }
-            public string TopicArn { get; set; }
-            public string Message { get; set; }
-            public string SubscribeURL { get; set; }
+        //public IHttpActionResult PostNotification(Notification Message)
+        //{
+        //    try
+        //    {
+        //        string msg = SerializeRequest(Request, Message);
+        //        return Ok(msg);
+        //    } catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.ToString());
+        //    }
 
+        //}
+
+        private string SerializeRequest(HttpRequestMessage Request, Object Message)
+        {
+            StringBuilder sb = new StringBuilder("HEADERS");
+            Request.Headers.ToList().ForEach(h => {
+                sb.Append(h.Key);
+                h.Value.ToList().ForEach(v => {
+                    var val = HttpUtility.UrlDecode(v);
+                    sb.Append(val).Append("; ");
+                });
+            });
+            sb.AppendLine("---------------------");
+            sb.AppendLine("BODY");
+            Message.GetType().GetProperties(System.Reflection.BindingFlags.Public).ToList().ForEach(p =>
+            {
+                sb.Append(p.Name).AppendLine(p.GetValue(Message).ToString());
+            });
+            return sb.ToString();
         }
 
         static void ConfigureNLog()
@@ -182,6 +244,35 @@ namespace GSS.Participation.Api.Controllers
             LogManager.Configuration = config;
         }
     }
+    public class ConfirmationMessage
+    {
+        public string Type { get; set; }
+        public string MessageId { get; set; }
+        public string Token { get; set; }
+        public string TopicArn { get; set; }
+        public string Message { get; set; }
+        public string SubscribeURL { get; set; }
+        public string Timestamp { get; set; }
 
+    }
+
+    public class Notification
+    {
+        public string Message { get; set; }
+        public string MessageId { get; set; }
+        public string Signature { get; set; }
+        public string SignatureVersion { get; set; }
+        public string SigningCertURL { get; set; }
+        public string Subject { get; set; }
+        public string Timestamp { get; set; }
+        public string TopicArn { get; set; }
+        public string Type { get; set; }
+        public string UnsubscribeURL { get; set; }
+
+        //public string SubscribeURL { get; set; }
+
+        //public string Token { get; set; }
+
+    }
 
 }
