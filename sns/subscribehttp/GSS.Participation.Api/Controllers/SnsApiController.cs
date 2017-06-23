@@ -27,6 +27,7 @@ namespace GSS.Participation.Api.Controllers
     /// </summary>
     /// 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/SnsApi")]
     public class SnsApiController : ApiController
     {
         public IHttpActionResult GetTest(string name)
@@ -106,6 +107,8 @@ namespace GSS.Participation.Api.Controllers
                 return BadRequest("AN ERROR HAPEPNED: " + msg);
             }
         }
+
+        [Route("PostSubscription")]
         public IHttpActionResult PostSubscription(string TopicName)
         {
             return Ok(TopicName);
@@ -153,7 +156,9 @@ namespace GSS.Participation.Api.Controllers
             }
 
         }
-        private async Task<IHttpActionResult> PostConfirmation(ConfirmationMessage response)
+
+        [Route("PostConfirmation")]
+        public async Task<IHttpActionResult> PostConfirmation(Notification response)
         {
             //TODO - verify auth - http://docs.aws.amazon.com/sns/latest/dg/SendMessageToHttp.verify.signature.html
             //TODO - verify this confirmation is expected topicarn recorded in PostSubscription
@@ -175,15 +180,21 @@ namespace GSS.Participation.Api.Controllers
                 string serialized = SerializeRequest(Request, response);
 
                 NLog.LogManager.GetLogger("aws").Info("SERIALIZED REQUEST " + serialized);
+                if (0==string.Compare(response.Type, "notification", true))
+                {
+                    HttpClient httpclient = new HttpClient();
+                    NLog.LogManager.GetLogger("aws").Info($"PostConfirmation invoking httpClient.GetAsync");
+                    var result = await httpclient.GetAsync(response.SubscribeURL);
+                    NLog.LogManager.GetLogger("aws").Info($"PostConfirmation reading response");
+                    var msg = await result.Content.ReadAsStringAsync();
 
-                HttpClient httpclient = new HttpClient();
-                NLog.LogManager.GetLogger("aws").Info($"PostConfirmation invoking httpClient.GetAsync");
-                var result = await httpclient.GetAsync(response.SubscribeURL);
-                NLog.LogManager.GetLogger("aws").Info($"PostConfirmation reading response");
-                var msg = await result.Content.ReadAsStringAsync();
-
-                NLog.LogManager.GetLogger("aws").Info($"PostConfirmation returning " + msg);
-                return Ok(msg + "<br/>" + confirmResponse);
+                    NLog.LogManager.GetLogger("aws").Info($"PostConfirmation returned " + msg);
+                    return Ok(msg);
+                } else
+                {
+                    //TODO - write Subject/Message to database
+                    return Ok();
+                }
             } catch (Exception ex)
             {
                 string msg = ex.ToString();
@@ -192,18 +203,20 @@ namespace GSS.Participation.Api.Controllers
             }
         }
 
-        //public IHttpActionResult PostNotification(Notification Message)
-        //{
-        //    try
-        //    {
-        //        string msg = SerializeRequest(Request, Message);
-        //        return Ok(msg);
-        //    } catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.ToString());
-        //    }
+        [Route("PostNotification")]
+        public IHttpActionResult PostNotification(Notification Message)
+        {
+            try
+            {
+                string msg = SerializeRequest(Request, Message);
+                return Ok(msg);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
 
-        //}
+        }
 
         private string SerializeRequest(HttpRequestMessage Request, Object Message)
         {
@@ -217,7 +230,7 @@ namespace GSS.Participation.Api.Controllers
             });
             sb.AppendLine("---------------------");
             sb.AppendLine("BODY");
-            Message.GetType().GetProperties(System.Reflection.BindingFlags.Public).ToList().ForEach(p =>
+            Message.GetType().GetProperties(System.Reflection.BindingFlags.Public|System.Reflection.BindingFlags.Instance).ToList().ForEach(p =>
             {
                 sb.Append(p.Name).AppendLine(p.GetValue(Message).ToString());
             });
@@ -269,9 +282,9 @@ namespace GSS.Participation.Api.Controllers
         public string Type { get; set; }
         public string UnsubscribeURL { get; set; }
 
-        //public string SubscribeURL { get; set; }
+        public string SubscribeURL { get; set; }
 
-        //public string Token { get; set; }
+        public string Token { get; set; }
 
     }
 
