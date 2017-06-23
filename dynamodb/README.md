@@ -4,9 +4,18 @@
 
 [VStudio Tools and SDK](https://aws.amazon.com/visualstudio/)
 
+### I used the samples found in the following lnks.  
+
+The Query example code shows looking up all the keys for a partition, which was the basis for the Configuration example code I wrote that reads all the keys for a project.
+
 [.Net Code Samples](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/CodeSamples.DotNet.html)
 
+This page has links to Sample which are found in the "Working with DynamoDB" section of the Left-Nav menu.  Each topic under that section has some sample code in Java and .Net.
+
 [CRUD Examples](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetTableOperationsExample.html)
+
+Also see the Query example "FindRepliesPostedWithinTimePeriod" within http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LowLevelDotNetQuerying.html
+
 
 ## Dynamo DB
 [What is DynamoDB?  And who is Navin Johnson?](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html)
